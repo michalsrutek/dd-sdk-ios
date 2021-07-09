@@ -98,7 +98,12 @@
          </EnvironmentVariable>
          <EnvironmentVariable
             key = "BITRISE_APP_TITLE"
-            value = "$(BITRISE_APP_TITLE)"
+            value = "$(BITRISE_TRIGGERED_WORKFLOW_TITLE)"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "BITRISE_BUILD_SLUG"
+            value = "$(BITRISE_TRIGGERED_WORKFLOW_ID)"
             isEnabled = "YES">
          </EnvironmentVariable>
       </EnvironmentVariables>

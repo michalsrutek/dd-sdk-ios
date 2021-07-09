@@ -89,14 +89,6 @@
         "value" : "$(GIT_CLONE_COMMIT_HASH)"
       },
       {
-        "key" : "BITRISE_APP_TITLE",
-        "value" : "$(BITRISE_APP_TITLE)"
-      },
-      {
-        "key" : "BITRISE_BUILD_SLUG",
-        "value" : "$(BITRISE_BUILD_SLUG)"
-      },
-      {
         "key" : "BITRISE_GIT_MESSAGE",
         "value" : "$(BITRISE_GIT_MESSAGE)"
       },
@@ -123,6 +115,14 @@
       {
         "key" : "GIT_CLONE_COMMIT_COMMITER_EMAIL",
         "value" : "$(GIT_CLONE_COMMIT_COMMITER_EMAIL)"
+      },
+      {
+        "key" : "BITRISE_APP_TITLE",
+        "value" : "$(BITRISE_TRIGGERED_WORKFLOW_TITLE)"
+      },
+      {
+        "key" : "BITRISE_BUILD_SLUG",
+        "value" : "$(BITRISE_TRIGGERED_WORKFLOW_ID)"
       }
     ],
     "targetForVariableExpansion" : {
