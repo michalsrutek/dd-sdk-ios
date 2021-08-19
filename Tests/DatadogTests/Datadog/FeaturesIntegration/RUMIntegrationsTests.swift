@@ -44,7 +44,8 @@ class RUMIntegrationsTests: XCTestCase {
             commonDependencies: .mockAny(),
             vitalCPUReader: SamplingBasedVitalReaderMock(),
             vitalMemoryReader: SamplingBasedVitalReaderMock(),
-            vitalRefreshRateReader: ContinuousVitalReaderMock()
+            vitalRefreshRateReader: ContinuousVitalReaderMock(),
+            vitalLongTaskReader: ContinuousVitalReaderMock()
         )
         defer { RUMFeature.instance?.deinitialize() }
 

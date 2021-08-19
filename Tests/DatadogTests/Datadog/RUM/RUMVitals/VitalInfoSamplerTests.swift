@@ -12,11 +12,13 @@ class VitalInfoSamplerTests: XCTestCase {
         let mockCPUReader = SamplingBasedVitalReaderMock()
         let mockMemoryReader = SamplingBasedVitalReaderMock()
         let mockRefreshRateReader = ContinuousVitalReaderMock()
+        let mockLongTaskReader = ContinuousVitalReaderMock()
 
         let sampler = VitalInfoSampler(
             cpuReader: mockCPUReader,
             memoryReader: mockMemoryReader,
             refreshRateReader: mockRefreshRateReader,
+            longTaskReader: mockLongTaskReader,
             frequency: 0.1
         )
 
@@ -25,6 +27,11 @@ class VitalInfoSamplerTests: XCTestCase {
         mockRefreshRateReader.vitalInfo = {
             var info = VitalInfo()
             info.addSample(666.0)
+            return info
+        }()
+        mockLongTaskReader.vitalInfo = {
+            var info = VitalInfo()
+            info.addSample(999.0)
             return info
         }()
 
@@ -40,6 +47,7 @@ class VitalInfoSamplerTests: XCTestCase {
             XCTAssertGreaterThan(sampler.memory.sampleCount, 1)
             let maxFPS = Double(UIScreen.main.maximumFramesPerSecond)
             XCTAssertEqual(sampler.refreshRate.meanValue, 666.0 / maxFPS)
+            XCTAssertEqual(sampler.longTask.meanValue, 999.0)
         }
     }
 
@@ -52,6 +60,7 @@ class VitalInfoSamplerTests: XCTestCase {
                 cpuReader: VitalCPUReader(),
                 memoryReader: VitalMemoryReader(),
                 refreshRateReader: VitalRefreshRateReader(),
+                longTaskReader: VitalLongTaskReader(),
                 frequency: 0.1
             )
         }

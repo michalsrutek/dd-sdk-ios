@@ -20,6 +20,7 @@ internal struct RUMScopeDependencies {
     let vitalCPUReader: SamplingBasedVitalReader
     let vitalMemoryReader: SamplingBasedVitalReader
     let vitalRefreshRateReader: ContinuousVitalReader
+    let vitalLongTaskReader: ContinuousVitalReader
 }
 
 internal class RUMApplicationScope: RUMScope, RUMContextProvider {

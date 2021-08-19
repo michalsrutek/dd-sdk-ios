@@ -42,20 +42,33 @@ internal final class VitalInfoSampler {
         return info.scaledDown(by: maximumRefreshRate)
     }
 
+    let longTaskReader: ContinuousVitalReader
+    private let longTaskPublisher = VitalPublisher(initialValue: VitalInfo())
+
+    var longTask: VitalInfo {
+        return longTaskPublisher.currentValue
+    }
+
     private var timer: Timer?
 
     init(
         cpuReader: SamplingBasedVitalReader,
         memoryReader: SamplingBasedVitalReader,
         refreshRateReader: ContinuousVitalReader,
+        longTaskReader: ContinuousVitalReader,
         frequency: TimeInterval = VitalInfoSampler.frequency,
         maximumRefreshRate: Double = Double(UIScreen.main.maximumFramesPerSecond)
     ) {
         self.cpuReader = cpuReader
+
         self.memoryReader = memoryReader
+
         self.refreshRateReader = refreshRateReader
         self.refreshRateReader.register(self.refreshRatePublisher)
         self.maximumRefreshRate = maximumRefreshRate
+
+        self.longTaskReader = longTaskReader
+        self.longTaskReader.register(self.longTaskPublisher)
 
         takeSample()
         let timer = Timer(
@@ -74,6 +87,7 @@ internal final class VitalInfoSampler {
     deinit {
         timer?.invalidate()
         refreshRateReader.unregister(refreshRatePublisher)
+        longTaskReader.unregister(longTaskPublisher)
     }
 
     private func takeSample() {

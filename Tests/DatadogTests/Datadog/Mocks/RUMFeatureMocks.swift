@@ -18,7 +18,8 @@ extension RUMFeature {
             commonDependencies: .mockAny(),
             vitalCPUReader: SamplingBasedVitalReaderMock(),
             vitalMemoryReader: SamplingBasedVitalReaderMock(),
-            vitalRefreshRateReader: ContinuousVitalReaderMock()
+            vitalRefreshRateReader: ContinuousVitalReaderMock(),
+            vitalLongTaskReader: ContinuousVitalReaderMock()
         )
     }
 
@@ -61,7 +62,8 @@ extension RUMFeature {
             commonDependencies: dependencies,
             vitalCPUReader: SamplingBasedVitalReaderMock(),
             vitalMemoryReader: SamplingBasedVitalReaderMock(),
-            vitalRefreshRateReader: ContinuousVitalReaderMock()
+            vitalRefreshRateReader: ContinuousVitalReaderMock(),
+            vitalLongTaskReader: ContinuousVitalReaderMock()
         )
     }
 
@@ -428,7 +430,8 @@ extension RUMScopeDependencies {
             dateCorrector: dateCorrector,
             vitalCPUReader: SamplingBasedVitalReaderMock(),
             vitalMemoryReader: SamplingBasedVitalReaderMock(),
-            vitalRefreshRateReader: ContinuousVitalReaderMock()
+            vitalRefreshRateReader: ContinuousVitalReaderMock(),
+            vitalLongTaskReader: ContinuousVitalReaderMock()
         )
     }
 
@@ -452,7 +455,8 @@ extension RUMScopeDependencies {
             dateCorrector: dateCorrector ?? self.dateCorrector,
             vitalCPUReader: SamplingBasedVitalReaderMock(),
             vitalMemoryReader: SamplingBasedVitalReaderMock(),
-            vitalRefreshRateReader: ContinuousVitalReaderMock()
+            vitalRefreshRateReader: ContinuousVitalReaderMock(),
+            vitalLongTaskReader: ContinuousVitalReaderMock()
         )
     }
 }

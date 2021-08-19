@@ -190,7 +190,8 @@ public class RUMMonitor: DDRUMMonitor, RUMCommandSubscriber {
                     dateCorrector: rumFeature.dateCorrector,
                     vitalCPUReader: rumFeature.vitalCPUReader,
                     vitalMemoryReader: rumFeature.vitalMemoryReader,
-                    vitalRefreshRateReader: rumFeature.vitalRefreshRateReader
+                    vitalRefreshRateReader: rumFeature.vitalRefreshRateReader,
+                    vitalLongTaskReader: rumFeature.vitalLongTaskReader
                 ),
                 samplingRate: rumFeature.configuration.sessionSamplingRate,
                 backgroundEventTrackingEnabled: rumFeature.configuration.backgroundEventTrackingEnabled

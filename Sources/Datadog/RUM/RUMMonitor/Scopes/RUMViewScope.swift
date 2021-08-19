@@ -94,7 +94,8 @@ internal class RUMViewScope: RUMScope, RUMContextProvider {
         self.vitalInfoSampler = VitalInfoSampler(
             cpuReader: dependencies.vitalCPUReader,
             memoryReader: dependencies.vitalMemoryReader,
-            refreshRateReader: dependencies.vitalRefreshRateReader
+            refreshRateReader: dependencies.vitalRefreshRateReader,
+            longTaskReader: dependencies.vitalLongTaskReader
         )
     }
 
@@ -330,6 +331,7 @@ internal class RUMViewScope: RUMScope, RUMContextProvider {
         let cpuInfo = vitalInfoSampler.cpu
         let memoryInfo = vitalInfoSampler.memory
         let refreshRateInfo = vitalInfoSampler.refreshRate
+        let longTaskInfo = vitalInfoSampler.longTask
 
         let eventData = RUMViewEvent(
             dd: .init(documentVersion: version.toInt64),
@@ -363,7 +365,7 @@ internal class RUMViewScope: RUMScope, RUMContextProvider {
                 loadEvent: nil,
                 loadingTime: nil,
                 loadingType: nil,
-                longTask: nil,
+                longTask: .init(count: longTaskInfo.sampleCount.toInt64),
                 memoryAverage: memoryInfo.meanValue,
                 memoryMax: memoryInfo.maxValue,
                 name: viewName,

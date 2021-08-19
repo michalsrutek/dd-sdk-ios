@@ -37,9 +37,10 @@ internal final class RUMFeature {
     let carrierInfoProvider: CarrierInfoProviderType
     let launchTimeProvider: LaunchTimeProviderType
 
-    let vitalCPUReader: SamplingBasedVitalReader // VitalCPUReader
-    let vitalMemoryReader: SamplingBasedVitalReader // VitalMemoryReader
-    let vitalRefreshRateReader: ContinuousVitalReader // VitalRefreshRateReader
+    let vitalCPUReader: SamplingBasedVitalReader
+    let vitalMemoryReader: SamplingBasedVitalReader
+    let vitalRefreshRateReader: ContinuousVitalReader
+    let vitalLongTaskReader: ContinuousVitalReader
 
     // MARK: - Components
 
@@ -141,7 +142,8 @@ internal final class RUMFeature {
             commonDependencies: commonDependencies,
             vitalCPUReader: VitalCPUReader(),
             vitalMemoryReader: VitalMemoryReader(),
-            vitalRefreshRateReader: VitalRefreshRateReader()
+            vitalRefreshRateReader: VitalRefreshRateReader(),
+            vitalLongTaskReader: VitalLongTaskReader()
         )
     }
 
@@ -153,7 +155,8 @@ internal final class RUMFeature {
         commonDependencies: FeaturesCommonDependencies,
         vitalCPUReader: SamplingBasedVitalReader,
         vitalMemoryReader: SamplingBasedVitalReader,
-        vitalRefreshRateReader: ContinuousVitalReader
+        vitalRefreshRateReader: ContinuousVitalReader,
+        vitalLongTaskReader: ContinuousVitalReader
     ) {
         // Configuration
         self.configuration = configuration
@@ -174,6 +177,7 @@ internal final class RUMFeature {
         self.vitalCPUReader = vitalCPUReader
         self.vitalMemoryReader = vitalMemoryReader
         self.vitalRefreshRateReader = vitalRefreshRateReader
+        self.vitalLongTaskReader = vitalLongTaskReader
     }
 
 #if DD_SDK_COMPILED_FOR_TESTING
